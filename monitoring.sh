@@ -21,5 +21,6 @@ printf "#LVM use: `lsblk |grep lvm | awk '{if($1) {print "yes";exit;}else {print
 printf "#Connexions TCP: `netstat -ant | grep ESTABLISHED | wc -l` ESTABLISHED \n"
 printf "#User Log: `who | wc -l` \n"
 printf "#Network: IP `hostname -I` (`ip addr | grep link/ether | awk '{print $(NF -2)}'`) \n"
-printf "#sudo: `sudo cat /var/log/sudo/sudo.log | expr $(wc -l) / 2` cmd"
+printf "#sudo: `journalctl -q  _COMM=sudo | grep COMMAND | wc -l` cmd"
+#printf "#sudo: `sudo cat /var/log/sudo/sudo.log | expr $(wc -l) / 2` cmd"
 #printf "#Sudo: `cat /var/log/sudo/sudo.log | grep COMMAND | wc -l` cmd"

@@ -1,3 +1,5 @@
+## <Check_operating_system> ::
+head -n 2 /etc/os-release
 ## <user> ::
 # Adding user in sudo group :
 su -
@@ -12,6 +14,7 @@ sudo chage -l username
 sudo adduser username (sudo/user42)
 ## <SSH> ::
 # Check the SSH server status :
+sudo service ssh status
 sudo systemctl status ssh
 # Restart the SSH service :
 service ssh restart
@@ -21,6 +24,7 @@ sudo vim /etc/ssh/sshd_config
 sudo grep Port /stc/ssh/sshd_config
 ## <UFW> ::
 # UFW Check the status :
+sudo ufw status
 sudo ufw status numbered
 # Configure the rules :
 sudo ufw allow ssh
@@ -36,7 +40,7 @@ sudo ufw delete (that number)
 sudo vim /etc/pam.d/common-password
 # Password expiration :
 sudo vim /etc/login.defs
-#### Create group ####
+#### <Create_group> ####
 sudo groupadd (group_name)
 ==> check if group created : getent group
 # Assign an user into “evaluating” group :
