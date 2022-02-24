@@ -1,5 +1,6 @@
 ## <Check_operating_system> ::
 head -n 2 /etc/os-release
+uname -a
 ## <user> ::
 # Adding user in sudo group :
 su -
@@ -63,4 +64,16 @@ service ssh restart
 # Changing default port (22) to 4242 :
 sudo vim /etc/ssh/sshd_config
 # Check if port settings got right :
-sudo grep Port /stc/ssh/sshd_config
+sudo grep Port /etc/ssh/sshd_config
+# Check the allow Port :
+ss -tunlp
+## <Script_monitoring> ::
+# path of script :
+sudo /usr/local/bin/monitoring.sh
+# Open crontab :
+sudo crontab -u root -e
+
+
+### Configuring sudoers group ###
+sudo vim /etc/sudoers
+

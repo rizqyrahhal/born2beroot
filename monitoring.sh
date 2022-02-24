@@ -8,7 +8,8 @@ USED_MEMORY_PERCENT=$(expr $USED_MEMORY \* 100 / $TOTAL_MEMORY)
 #pour Disk Usage
 TOTAL_DISK_SIZE=$(df -h --total --output=size| awk 'END{print$NF}')
 USED_DISK_SIZE=$(df -h --total --output=used | awk 'END{print$NF}')
-USED_DISK_PERCENT=$(df -h --total | awk 'END{print$(NF - 1)}')
+USED_DISK_PERCENT=$(df -h --total --output=pcent | awk 'END{print$NF}')
+# USED_DISK_PERCENT=$(df -h --total | awk 'END{print$(NF - 1)}')
 
 printf "#Architecture: `uname -a` \n"
 printf "#CPU physical: `nproc` \n"
@@ -18,7 +19,7 @@ printf "#Disk Usage: $USED_DISK_SIZE/$TOTAL_DISK_SIZE ($USED_DISK_PERCENT%)\n"
 printf "#CPU Load: `top -bn1 | grep Cpu | awk '{print$2}'`%% \n"
 printf "#Last Boot: `who -b | awk '{print $(NF - 1), $NF}'` \n"
 printf "#LVM use: `lsblk |grep lvm | awk '{if($1) {print "yes";exit;}else {print "no"}}'` \n"
-printf "#Connexions TCP: `netstat -ant | grep ESTABLISHED | wc -l` ESTABLISHED \n"
+printf "#Connexions TCP: `netstat -at | grep ESTABLISHED | wc -l` ESTABLISHED \n"
 printf "#User Log: `who | wc -l` \n"
 printf "#Network: IP `hostname -I` (`ip addr | grep link/ether | awk '{print $(NF -2)}'`) \n"
 printf "#sudo: `journalctl -q  _COMM=sudo | grep COMMAND | wc -l` cmd"
