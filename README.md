@@ -1,7 +1,11 @@
 ##Check_operating_system
+
 head -n 2 /etc/os-release
+
 uname -a
+
 ##user
+
 #Adding user in sudo group :
 su -
 usermod -aG sudo your_username
